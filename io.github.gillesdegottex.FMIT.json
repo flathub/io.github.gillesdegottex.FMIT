@@ -3,7 +3,7 @@
     "branch" : "stable",
     "runtime" : "org.kde.Platform",
     "sdk" : "org.kde.Sdk",
-    "runtime-version" : "5.12",
+    "runtime-version" : "5.14",
     "command" : "fmit",
     "rename-icon" : "fmit",
     "rename-desktop-file" : "fmit.desktop",
@@ -11,33 +11,15 @@
     "finish-args" : [
         "--share=ipc",
         "--socket=x11",
+        "--socket=wayland",
+        "--device=dri",
         /* acs_alsa support */
-        "--socket=pulseaudio"
+        "--socket=pulseaudio",
+        /* On SuSE it seems to be necessary for sound to work */
+        "--env=ALSA_CONFIG_PATH=",
+        "--env=QT_AUTO_SCREEN_SCALE_FACTOR=1"
     ],
     "modules" : [
-        {
-            "name": "fftw",
-            "config-opts" : [
-                "--enable-shared",
-                "--disable-static"
-            ],
-            "cleanup" : [
-            	"/bin",
-                "/include",
-                "/lib/*.la",
-                "/lib/cmake",
-                "/lib/pkgconfig",
-                "/share/info",
-                "/share/man"
-            ],
-            "sources" : [
-                {
-                    "type" : "archive",
-                    "url" : "http://www.fftw.org/fftw-3.3.8.tar.gz",
-                    "md5": "8aac833c943d8e90d51b697b27d4384d"
-                }
-            ]
-        },
         {
             "name" : "fmit",
             "buildsystem" : "qmake",
@@ -50,7 +32,12 @@
                 {
                     "type" : "git",
                     "url" : "https://github.com/gillesdegottex/fmit.git",
-                    "commit" : "7320d38fc9f35a76383ba14d83d18a0f0abf9de5"
+                    "tag": "v1.2.13",
+                    "commit" : "b2b6a9e699ea217a8aa6b02046e264909cfc396c"
+                },
+                {
+                    "type": "patch",
+                    "path": "appdata-fix.patch"
                 },
                 {
                     /* acs_qt does not work on Linux */
