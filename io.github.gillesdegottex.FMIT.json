@@ -15,17 +15,22 @@
         "--device=dri",
         /* acs_alsa support */
         "--socket=pulseaudio",
+        /* For pipewire + JACK */
+        "--filesystem=xdg-run/pipewire-0",
+        "--system-talk-name=org.freedesktop.RealtimeKit1",
         /* On SuSE it seems to be necessary for sound to work */
         "--env=ALSA_CONFIG_PATH=",
         "--env=QT_ENABLE_HIGHDPI_SCALING=1"
     ],
     "modules" : [
+        "shared-modules/linux-audio/jack2.json",
         {
             "name" : "fmit",
             "buildsystem" : "qmake",
             "config-opts" : [
                 "INCLUDEPATH+=/app/include",
                 "LIBS+=-L/app/lib",
+                "CONFIG+=acs_jack",
                 "CONFIG+=acs_alsa"
             ],
             "sources" : [
