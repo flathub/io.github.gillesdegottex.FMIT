@@ -1,33 +1,26 @@
 {
     "id" : "io.github.gillesdegottex.FMIT",
-    "branch" : "stable",
     "runtime" : "org.kde.Platform",
     "sdk" : "org.kde.Sdk",
-    "runtime-version" : "5.15-21.08",
+    "runtime-version" : "5.15-22.08",
     "command" : "fmit",
     "rename-icon" : "fmit",
     "rename-desktop-file" : "fmit.desktop",
     "rename-appdata-file" : "fmit.appdata.xml",
     "finish-args" : [
         "--share=ipc",
-        "--socket=x11",
+        "--socket=fallback-x11",
         "--socket=wayland",
         "--device=dri",
         /* acs_alsa support */
         "--socket=pulseaudio",
         /* For pipewire + JACK */
         "--filesystem=xdg-run/pipewire-0",
-        "--system-talk-name=org.freedesktop.RealtimeKit1",
         /* On SuSE it seems to be necessary for sound to work */
         "--env=ALSA_CONFIG_PATH=",
         "--env=QT_ENABLE_HIGHDPI_SCALING=1"
     ],
-    "cleanup": [
-        "/bin/alsa_*",
-        "/bin/jack*"
-    ],
     "modules" : [
-        "shared-modules/linux-audio/jack2.json",
         {
             "name" : "fmit",
             "buildsystem" : "qmake",
@@ -55,12 +48,11 @@
                 {
                     /* acs_qt does not work on Linux */
                     "type" : "shell",
-                    "commands" : [ "sed -i -e 's/CONFIG += acs_qt//g' fmit.pro" ]
-                },
-                {
-                    /* must be done before calling qmake, or translations will not be installed (?) */
-                    "type" : "shell",
-                    "commands" : [ "lrelease fmit.pro" ]
+                    "commands" : [
+                        "sed -i -e 's/CONFIG += acs_qt//g' fmit.pro",
+                        /* must be done before calling qmake, or translations will not be installed (?) */
+                        "lrelease fmit.pro"
+                    ]
                 }
             ]
         }
