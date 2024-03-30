@@ -1,8 +1,38 @@
 diff --git a/distrib/fmit.appdata.xml.in b/distrib/fmit.appdata.xml.in
-index 5038ca8..b3f0bd0 100644
+index 5038ca8..59437c5 100644
 --- a/distrib/fmit.appdata.xml.in
 +++ b/distrib/fmit.appdata.xml.in
-@@ -110,7 +110,9 @@
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!-- Copyright 2014 Gilles Degottex <gilles.degottex@gmail.com> -->
+-<application>
+-  <id type="desktop">fmit.desktop</id>
++<component type="desktop-application">
++  <id>fmit.desktop</id>
+   <metadata_license>CC0-1.0</metadata_license>
+   <project_license>GPL-2.0+</project_license>
+   <name>FMIT</name>
+@@ -31,6 +31,7 @@
+       advanced real-time analysis toolset, or anywhere in between.
+     </p>
+   </description>
++  <launchable type="desktop-id">fmit.desktop</launchable>
+   <screenshots>
+     <screenshot type="default">
+       <image width="1200" height="675">https://gillesdegottex.github.io/fmit/figs/complete.png</image>
+@@ -76,9 +77,9 @@
+   <url type="homepage">https://gillesdegottex.github.io/fmit/</url>
+   <url type="translate">https://hosted.weblate.org/projects/fmit/</url>
+   <url type="bugtracker">https://github.com/gillesdegottex/fmit/issues</url>
+-  <url type="faq">http://gillesdegottex.github.io/fmit/faq.html</url>
++  <url type="faq">https://gillesdegottex.github.io/fmit/faq.html</url>
+   <developer_name>Gilles Degottex</developer_name>
+-  <updatecontact>gilles.degottex@gmail.com</updatecontact>
++  <update_contact>gilles.degottex@gmail.com</update_contact>
+   <translation type="qt">fmit</translation>
+   <content_rating type="oars-1.1">
+     <content_attribute id="violence-cartoon">none</content_attribute>
+@@ -110,6 +111,8 @@
      <content_attribute id="money-gambling">none</content_attribute>
    </content_rating>
    <releases>
@@ -11,8 +41,7 @@ index 5038ca8..b3f0bd0 100644
      <release version="1.2.6" date="2018-05-30">
        <description>
          <ul>
-           <li>New note names: Hindustani, Byzantine</li>
-@@ -118,11 +118,11 @@
+@@ -118,7 +121,7 @@
            <li>Use custom save settings and pause icons that better fits the other icons design</li>
            <li>Flexible transposition key selection.</li>
            <li>Added symbolic icon for high-contrast setup.</li>
@@ -21,7 +50,9 @@ index 5038ca8..b3f0bd0 100644
            <li>Added translation for application information.</li>
          </ul>
        </description>
+@@ -133,4 +136,4 @@
+       </description>
      </release>
-     <release version="1.1.18" date="2018-05-09">
-       <description>
-         <ul>
+   </releases>
+-</application>
++</component>
