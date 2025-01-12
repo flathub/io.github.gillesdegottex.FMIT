@@ -2,7 +2,7 @@
     "id" : "io.github.gillesdegottex.FMIT",
     "runtime" : "org.kde.Platform",
     "sdk" : "org.kde.Sdk",
-    "runtime-version" : "5.15-23.08",
+    "runtime-version" : "5.15-24.08",
     "command" : "fmit",
     "rename-icon" : "fmit",
     "rename-desktop-file" : "fmit.desktop",
@@ -12,11 +12,8 @@
         "--socket=fallback-x11",
         "--socket=wayland",
         "--device=dri",
-        /* acs_alsa support */
         "--socket=pulseaudio",
-        /* For pipewire + JACK */
         "--filesystem=xdg-run/pipewire-0",
-        /* On SuSE it seems to be necessary for sound to work */
         "--env=ALSA_CONFIG_PATH=",
         "--env=QT_ENABLE_HIGHDPI_SCALING=1"
     ],
@@ -39,11 +36,10 @@
                 },
                 {
                     "type": "patch",
-                    "path": "appdata-fix.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "fmit-gl.patch"
+                    "paths": [
+                        "appdata-fix.patch",
+                        "fmit-gl.patch"
+                    ]
                 },
                 {
                     /* acs_qt does not work on Linux */
